@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { Card, Row, Spinner, Button, Col } from "react-bootstrap";
+import { Row, Spinner } from "react-bootstrap";
 
 // importamos bebidas contexto
 import { BebidasContext } from "../context/BebidasProvider";
