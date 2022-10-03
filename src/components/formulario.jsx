@@ -103,7 +103,7 @@ const formulario = () => {
             </Col>
         </Row>
 
-        <Row className='justify-content-end'>
+        <Row className='justify-content-center'>
             <Col sm={12} md={3}>
             <Button variant="secondary" className='text-uppercase w-100' type='submit'>
                 Buscar bebida</Button>
