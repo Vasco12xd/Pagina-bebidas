@@ -5,6 +5,7 @@ import { Row, Spinner } from "react-bootstrap";
 import { BebidasContext } from "../context/BebidasProvider";
 import { Bebidas } from "./Bebidas";
 
+
 const ListadoBebidas = () => {
   //accediendo al state de bebidas y cargando del context de bebidas
   const { cargando } = useContext(BebidasContext);
@@ -19,9 +20,8 @@ const ListadoBebidas = () => {
           </Spinner>
         )
       }
-      {
-        <Bebidas />
-      }
+      <Bebidas />
+      
         
       
     </Row>
