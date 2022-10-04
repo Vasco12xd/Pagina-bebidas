@@ -1,32 +1,35 @@
-import React, { useState } from 'react';
-import Button from 'react-bootstrap/Button';
-import Modal from 'react-bootstrap/Modal';
+import React, { useState, useContext } from 'react';                      
+import Button from 'react-bootstrap/Button';                  
+import {Modal, Image} from 'react-bootstrap';
+
 
 import { BebidasContext } from "../context/BebidasProvider";
 
 function ModalBebida() {
   const [show, setShow] = useState(false);
 
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-
- const { modal, handleClickModal } = useContext(BebidasContext)
+ const { modal, handleClickModal, receta, cargandoModal } = useContext(BebidasContext)
 
   return (
-    <>
+    !cargandoModal && (
+      <>
       <Modal show={modal} onHide={handleClickModal}>
-        <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClickModal}>
-            Close
-          </Button>
-        </Modal.Footer>
+      
+        <Modal.Header closeButton>   
+          <Modal.Title>{receta.strDrink}</Modal.Title>                 
+        </Modal.Header>      
+        <Modal.Body>
+         <Image
+          src={receta.strDrinkThumb} 
+          alt={`Image ${receta.strDrink}`}
+          className="img-fluid"
+          padding="10px"
+          />  
+        </Modal.Body>
       </Modal>
-    </>
+    </>  
+  )
   );
 }
 
-render({ ModalBebida });
+export { ModalBebida };

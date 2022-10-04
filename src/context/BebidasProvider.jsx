@@ -24,21 +24,24 @@ const BebidasProvider = ({children}) => {
     const [idBebidaActual, setIdBebidaActual] = useState("");
 
     //state de la receta de la bebida seleccionada
-    const [receta, setReceta] = useState(null);
+    const [receta, setReceta] = useState({});
 
     //useEffect se ejecuta cuando pasa alguna cosa
     useEffect (() => {
+        setCargandoModal(true);
         //indicar que el modal va a cargar la informacion
         const obtenerReceta = async () => {
             //validar si existe labebida
             if (!idBebidaActual) return;
             try {
                 const url = `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${idBebidaActual}`;
-                const {data} = await axios.get(url);
-                setReceta(data.drinks[0]);
+                const data = await axios.get(url);
+                setReceta(data.data.drinks[0]);
             } catch (error) {
                  console.log(error);   
-                }
+            } finally {
+                setCargandoModal(false);
+            }
     };
     obtenerReceta();
     },[idBebidaActual]);
@@ -81,6 +84,7 @@ const BebidasProvider = ({children}) => {
         handleClickModal,
         modal,
         receta,
+        cargandoModal,
         }}>
         {children}
     </BebidasContext.Provider>
