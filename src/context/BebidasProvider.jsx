@@ -1,5 +1,6 @@
 import { createContext, useState } from "react"
 import axios from "axios";
+import { useEffect } from "react";
 
 
 //Creando el contexto
@@ -12,6 +13,35 @@ const BebidasProvider = ({children}) => {
 
     //state para cargar el spinner
     const [cargando, setCargando] = useState(false);
+
+    //state para cargar info modal
+    const [cargandoModal, setCargandoModal] = useState(false);
+
+    //state para abrir o cerrar el modal
+    const [modal, setModal] = useState(false);
+
+    //state de la bebida seleccionada
+    const [idBebidaActual, setIdBebidaActual] = useState("");
+
+    //state de la receta de la bebida seleccionada
+    const [receta, setReceta] = useState(null);
+
+    //useEffect se ejecuta cuando pasa alguna cosa
+    useEffect (() => {
+        //indicar que el modal va a cargar la informacion
+        const obtenerReceta = async () => {
+            //validar si existe labebida
+            if (!idBebidaActual) return;
+            try {
+                const url = `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${idBebidaActual}`;
+                const {data} = await axios.get(url);
+                setReceta(data.drinks[0]);
+            } catch (error) {
+                 console.log(error);   
+                }
+    };
+    obtenerReceta();
+    },[idBebidaActual]);
 
     //Funcion para consultar la bebida
     const consultarBebida = async (datos) => {
@@ -31,8 +61,27 @@ const BebidasProvider = ({children}) => {
         }
     };
 
+    //Funcion para actualizar el valor de id bebida actual
+    const handleClickBebida = (id) => {
+        //actualizamos el state de idBebidaActual
+        setIdBebidaActual(id);
+    };
+
+    const handleClickModal = () => {
+        //actualizamos el state de modal
+        setModal(!modal);
+    };
+
   return (
-    <BebidasContext.Provider value={{consultarBebida, bebidas, cargando}}>
+    <BebidasContext.Provider value={{
+        consultarBebida,
+        bebidas,
+        cargando,
+        handleClickBebida,
+        handleClickModal,
+        modal,
+        receta,
+        }}>
         {children}
     </BebidasContext.Provider>
   );

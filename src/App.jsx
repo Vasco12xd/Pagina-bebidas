@@ -3,10 +3,12 @@ import {Container} from 'react-bootstrap';
 //provider permite a los componentes hijos acceder al state
 import { CategoriaProvider } from './context/CategoriaProvider';
 import { BebidasProvider } from './context/BebidasProvider';
+import { IngredientesProvider } from './context/IngredientesProvider';
 
 
 import Formulario from "./components/formulario";
 import { ListadoBebidas } from "./components/ListadoBebidas";
+import { ModalBebida } from "./components/ModalBebida";
 
 function App() {
     return (
@@ -21,9 +23,11 @@ function App() {
           <Formulario/>
           <ListadoBebidas/>
         </Container>
+        
         </BebidasProvider>
       </CategoriaProvider>
     );
 }
+
 
 export default App

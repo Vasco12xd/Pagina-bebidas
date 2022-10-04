@@ -2,8 +2,11 @@ import { useContext } from "react";
 import { Card, Button, Col } from "react-bootstrap";
 import { BebidasContext } from "../context/BebidasProvider";
 
-const Bebidas = () => {
-  const { bebidas } = useContext(BebidasContext)
+
+const Bebidas = ({bebida}) => {
+
+  const { bebidas, handleClickBebida, handleClickModal } = useContext(BebidasContext)
+
   return (
       bebidas.map((bebida) => (
       <Col md={6} lg={3}>
@@ -13,14 +16,20 @@ const Bebidas = () => {
         </Card.Title>
         <Card.Img variant="top" src={bebida.strDrinkThumb} />
         <Card.Body>
-          <Button variant="success" className="w-100">
-            Ver mas
+          <Button 
+          variant="success" 
+          className="w-100" 
+          onClick={() => {
+            handleClickBebida(bebida.idDrink);
+            handleClickModal();
+          }}
+          >
+            Ver más
           </Button>
         </Card.Body>
       </Card>
     </Col>
       ))
-    
   );
 }
 

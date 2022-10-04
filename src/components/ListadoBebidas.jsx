@@ -20,6 +20,9 @@ const ListadoBebidas = () => {
           </Spinner>
         )
       }
+      {
+        //cambiar acá el codigo
+      }
       <Bebidas />
       
         
