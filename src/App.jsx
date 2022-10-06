@@ -21,7 +21,7 @@ function App() {
         <Container className='mt-4'>
           <Formulario/>
           <ListadoBebidas/>
-          <ModalBebida/>
+          <ModalBebida />
         </Container>
         
         </BebidasProvider>
