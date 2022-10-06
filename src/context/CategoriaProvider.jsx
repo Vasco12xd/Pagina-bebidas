@@ -1,4 +1,4 @@
-import { createContext,useState, useEffect } from "react";
+import { createContext, useState, useEffect } from "react";
 import axios from "axios";
 
 //Creando el contexto
@@ -6,34 +6,33 @@ import axios from "axios";
 const CategoriaContext = createContext();
 
 //Provider permite a los componentes hijos acceder al state
-const CategoriaProvider = ({children}) => {
-    //state de categorias
-    const [categorias, setCategorias] = useState([]);
+const CategoriaProvider = ({ children }) => {
+  //state de categorias
+  const [categorias, setCategorias] = useState([]);
 
-    //useEffect que se ejecuta cada que renderiza(carga) el componente
-    useEffect(() => {
-        obtenerCategorias();
-    },[]);
+  //useEffect que se ejecuta cada que renderiza(carga) el componente
+  useEffect(() => {
+    obtenerCategorias();
+  }, []);
 
-    //Funcionar para obtener categorias de la API
-    const obtenerCategorias = async () => {
-        try {
-            const url = `https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list`;
-        //Consultar data de la API
+  //Funcionar para obtener categorias de la API
+  const obtenerCategorias = async () => {
+    try {
+      const url = `https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list`;
+      //Consultar data de la API
 
-            const {data} = await axios.get(url);
-            setCategorias(data.drinks);
-
-
-        } catch (error) {
-            console.log(error);    
-        }
+      const { data } = await axios.get(url);
+      setCategorias(data.drinks);
+    } catch (error) {
+      console.log(error);
     }
+  };
 
-    return (
-        <CategoriaContext.Provider value={{ categorias }}>{children}</CategoriaContext.Provider>
-    )
-
+  return (
+    <CategoriaContext.Provider value={{ categorias }}>
+      {children}
+    </CategoriaContext.Provider>
+  );
 };
 
-export {CategoriaContext, CategoriaProvider};
+export { CategoriaContext, CategoriaProvider };
