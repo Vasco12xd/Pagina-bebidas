@@ -6,9 +6,12 @@ import { BebidasContext } from "../context/BebidasProvider";
 import { Bebidas } from "./Bebidas";
 
 
+
 const ListadoBebidas = () => {
   //accediendo al state de bebidas y cargando del context de bebidas
   const { cargando } = useContext(BebidasContext);
+
+
 
   return (
     <Row className="justify-content-center mt-5">

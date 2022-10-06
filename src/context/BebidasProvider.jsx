@@ -11,6 +11,9 @@ const BebidasProvider = ({children}) => {
     //state para guardar la bebida
     const [bebidas, setBebidas] = useState([]);
 
+    //bebidas dinamico
+    const [bebidasDinamico, setBebidasDinamico] = useState([]);
+
     //state para cargar el spinner
     const [cargando, setCargando] = useState(false);
 
@@ -55,8 +58,10 @@ const BebidasProvider = ({children}) => {
             const url = `https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${datos.nombre}&c=${datos.categoria}`;
             
             const {data} = await axios.get(url);
+            //actualizamos el state de bebidas
             setBebidas(data.drinks);
-
+            //actualizamos el state de bebidas dinamico
+            setBebidasDinamico(data.drinks);
             //actualizamos el state de cargando 
             setCargando(false);
         } catch (error) {
@@ -85,6 +90,8 @@ const BebidasProvider = ({children}) => {
         modal,
         receta,
         cargandoModal,
+        bebidasDinamico,
+        setBebidasDinamico
         }}>
         {children}
     </BebidasContext.Provider>

@@ -6,6 +6,8 @@ import {CategoriaContext} from '../context/CategoriaProvider';
 
 import { BebidasContext } from '../context/BebidasProvider';
 
+import Buscador  from "./Buscador";
+
 const formulario = () => {
     //state para controlar el estado de los formularios
 
@@ -109,7 +111,13 @@ const formulario = () => {
                 Buscar bebida</Button>
             </Col>
         </Row>
+        <Row className='justify-content-center'>
+            <Col className='mt-3'>
+            <Buscador />
+            </Col>
+        </Row>
     </form>
+
   )
 }
 

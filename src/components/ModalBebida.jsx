@@ -1,5 +1,4 @@
-import React, { useState, useContext } from 'react';                      
-import Button from 'react-bootstrap/Button';                  
+import React, { useContext } from 'react';        
 import {Modal, Image} from 'react-bootstrap';
 
 
@@ -18,6 +17,7 @@ function ModalBebida() {
         </li>
       );
     }
+  }
 
   return (
     !cargandoModal && (
@@ -45,5 +45,5 @@ function ModalBebida() {
   )
   );
 }
-}
+
 export { ModalBebida, };
